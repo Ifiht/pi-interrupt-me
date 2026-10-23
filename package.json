@@ -1,15 +1,24 @@
 {
   "name": "pi-interrupt-me",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Keep interrupted replies (partial reasoning, text, unfinished tool calls) visible to the model after you press Esc in pi.",
   "license": "MIT",
   "type": "module",
-  "keywords": ["pi-package", "pi-extension", "interrupt", "reasoning"],
+  "keywords": [
+    "pi-package",
+    "pi-extension",
+    "interrupt",
+    "reasoning"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Ifiht/pi-interrupt-me.git"
   },
-  "files": ["index.ts", "README.md", "LICENSE"],
+  "files": [
+    "index.ts",
+    "README.md",
+    "LICENSE"
+  ],
   "scripts": {
     "test": "node test.ts"
   },
@@ -22,6 +31,8 @@
     "@earendil-works/pi-coding-agent": "1.4.0"
   },
   "pi": {
-    "extensions": ["./index.ts"]
+    "extensions": [
+      "./index.ts"
+    ]
   }
 }
