@@ -1,0 +1,29 @@
+name: Release
+
+# Push a tag like v0.1.2 to test, publish to npm and create the GitHub release.
+on:
+  push:
+    tags: ['v*']
+
+permissions:
+  contents: write # gh release create
+  id-token: write # npm trusted publishing (OIDC), no npm token secret
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: '24'
+          registry-url: https://registry.npmjs.org
+      - run: npm ci
+      - run: npm test
+      - run: npm publish
+      - run: gh release create "$GITHUB_REF_NAME" --generate-notes
+        env:
+          GH_TOKEN: ${{ github.token }}
